@@ -18,6 +18,8 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
   Widgets/PopoverWidget.vala
   Widgets/ServiceWidget.vala
   Services/Service.vala
+  Services/ServiceDescriptor.vala
+  Services/ServicesLoader.vala
   ${CMAKE_CURRENT_BINARY_DIR}/config.vala
 PACKAGES
   gtk+-3.0

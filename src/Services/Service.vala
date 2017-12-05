@@ -1,4 +1,4 @@
-public class ServicesManager.Services.Service : GLib.Object {
+public class ServicesManager.Services.Service : Object {
   public signal void change(bool state);
   private string service_id;
 
@@ -24,12 +24,28 @@ public class ServicesManager.Services.Service : GLib.Object {
     var command = is_active() ? "stop" : "start";
 
     try {
-      Process.spawn_command_line_sync (service_command(command));
+      string[] spawn_args = {"service", service_id, command};
+      string[] spawn_env = Environ.get ();
+      Pid child_pid;
+
+      Process.spawn_async (
+        null,
+        spawn_args,
+        spawn_env,
+        SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
+        null,
+        out child_pid
+      );
+
+      ChildWatch.add (child_pid, (pid, status) => {
+        Process.close_pid (pid);
+        change(is_active());
+      });
+
     } catch (SpawnError e) {
       stderr.printf("%s\n", e.message);
     }
 
-    change(is_active());
   }
 
   private string service_command(string command) {

@@ -23,7 +23,7 @@ public class ServicesManager.Widgets.ServiceWidget : Gtk.Grid {
     var state_switch = new Wingpanel.Widgets.Switch (service_name, model.is_active());
 
     model.change.connect(update_switch);
-    state_switch.switched.connect(model.toggle);
+    state_switch.clicked.connect(model.toggle);
 
     return state_switch;
   }

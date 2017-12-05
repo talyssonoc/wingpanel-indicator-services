@@ -1,27 +1,32 @@
+using ServicesManager;
+
 public class ServicesManager.Widgets.PopoverWidget : Gtk.Grid {
-  private Wingpanel.Widgets.Button hide_button;
-  private Wingpanel.Widgets.Switch compositing_switch;
-  private ServicesManager.Widgets.ServiceWidget[] services_list;
+  private Widgets.ServiceWidget[] services;
 
   public PopoverWidget() {
-    hide_button = new Wingpanel.Widgets.Button ("Hide me!");
-    compositing_switch = new Wingpanel.Widgets.Switch ("Composited Icon");
-    services_list = {
-      new ServicesManager.Widgets.ServiceWidget(
-        "PostgreSQL",
-        new ServicesManager.Services.Service("postgresql")
-      )
-    };
+    services = create_services(Services.ServicesLoader.get_services_descriptors());
 
-    for (int index = 0; index < services_list.length; index++) {
-      attach (services_list[index], 0, index, 1, 1);
+    for (int i = 0; i < services.length; i++) {
+      attach (services[i], 0, i, 1, 1);
     }
-
   }
 
   public void update_services_state () {
-    foreach (ServicesManager.Widgets.ServiceWidget service in services_list) {
+    foreach (Widgets.ServiceWidget service in services) {
       service.update();
     }
+  }
+
+  private Widgets.ServiceWidget[] create_services(Services.ServiceDescriptor[] descriptors) {
+    Widgets.ServiceWidget[] services = new Widgets.ServiceWidget[descriptors.length];
+
+    for (int i = 0; i < descriptors.length; i++) {
+      services[i] = new Widgets.ServiceWidget(
+        descriptors[i].name,
+        new Services.Service(descriptors[i].id)
+      );
+    }
+
+    return services;
   }
 }
