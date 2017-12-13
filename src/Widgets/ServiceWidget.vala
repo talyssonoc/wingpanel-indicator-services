@@ -1,10 +1,8 @@
-public class ServicesManager.Widgets.ServiceWidget : Gtk.Grid {
-  private string service_name;
-  private ServicesManager.Services.Service model;
+public class Services.ServiceWidget : Gtk.Grid {
+  private Service model;
   private Wingpanel.Widgets.Switch state_switch;
 
-  public ServiceWidget(string service_name, ServicesManager.Services.Service model) {
-    this.service_name = service_name;
+  public ServiceWidget(Service model) {
     this.model = model;
     state_switch = create_switch();
 
@@ -20,7 +18,7 @@ public class ServicesManager.Widgets.ServiceWidget : Gtk.Grid {
   }
 
   private Wingpanel.Widgets.Switch create_switch() {
-    var state_switch = new Wingpanel.Widgets.Switch (service_name, model.is_active());
+    var state_switch = new Wingpanel.Widgets.Switch (model.name, model.is_active());
 
     model.change.connect(update_switch);
     state_switch.clicked.connect(model.toggle);

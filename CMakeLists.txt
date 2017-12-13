@@ -1,32 +1,21 @@
-# This a sample CMakeLists.txt for compiling indicatos for Wingpanel
-# http://elementaryos.org/docs/developer-guide/cmake
-
 cmake_minimum_required (VERSION 2.6)
 cmake_policy (VERSION 2.6)
 
-# Set the Title to use for the Indicator (May be used in future features)
-set (INDICATORTITLE "Services")
-
-# The description of what your Indicator is
-set (INDICATORDESCRIPTION "Services indicator")
-
-# Projectname
-project (services)
-
-#########################################################
-# Only alter stuff below if you know what you are doing #
-#########################################################
+set (INDICATOR_TITLE "Services indicator")
+set (INDICATOR_DESCRIPTION "Manages init scripts")
+project (com.github.talyssonoc.wingpanel-indicator-services)
 
 # Configuration
 include (GNUInstallDirs)
 set (DATADIR "${CMAKE_INSTALL_FULL_LIBDIR}/wingpanel/")
 set (PKGDATADIR "${DATADIR}")
-set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}-indicator")
-set (VERSION "2.0.3")
-list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
+set (EXEC_NAME "${CMAKE_PROJECT_NAME}")
+set (RELEASE_NAME "A services management indicator.")
+set (VERSION "0.1")
 
 # Configure file
-configure_file (${CMAKE_SOURCE_DIR}/config.vala.cmake ${CMAKE_BINARY_DIR}/src/config.vala)
+configure_file (${CMAKE_SOURCE_DIR}/Constants.vala.cmake ${CMAKE_BINARY_DIR}/src/Constants.vala)
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 # Comment this out to enable C compiler warnings
@@ -34,12 +23,8 @@ add_definitions (-w)
 
 # Traslation stuff
 # add_subdirectory (po)
-
-# GSettings schema
-# add_subdirectory (schemas)
-
-# Code
-add_subdirectory(src)
+add_subdirectory (schemas)
+add_subdirectory (src)
 
 # Uninstall target
 configure_file(

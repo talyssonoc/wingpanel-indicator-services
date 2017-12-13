@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema
+    path="/com/github/talyssonoc/wingpanel-indicator-services/"
+    id="com.github.talyssonoc.wingpanel-indicator-services"
+    gettext-domain="com.github.talyssonoc.wingpanel-indicator-services"
+  >
+    <key type="aa{ss}" name="services">
+      <default>[{"id": "postgresql", "name": "PostgreSQL"}]</default>
+      <summary>Sets the last bluetooth state to re-apply on reboot</summary>
+      <description></description>
+    </key>
+  </schema>
+</schemalist>

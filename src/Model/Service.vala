@@ -1,30 +1,39 @@
-public class ServicesManager.Services.Service : Object {
+public class Services.Service : Object {
   public signal void change(bool state);
-  private string service_id;
+  private string id;
+  public string name;
 
-  public Service(string service_id) {
-    this.service_id = service_id;
+  public Service(string id, string name) {
+    this.id = id;
+    this.name = name;
   }
 
   public bool is_active() {
     string standard_output, standard_error;
     int exit_status;
 
-    Process.spawn_command_line_sync (
-      service_command("status"),
-      out standard_output,
-      out standard_error,
-      out exit_status
-    );
+    try {
+      Process.spawn_command_line_sync (
+        service_command("status"),
+        out standard_output,
+        out standard_error,
+        out exit_status
+      );
 
-    return exit_status == 0;
+
+      return exit_status == 0;
+    } catch (SpawnError e) {
+      stderr.printf("%s\n", e.message);
+
+      return false;
+    }
   }
 
   public void toggle() {
     var command = is_active() ? "stop" : "start";
 
     try {
-      string[] spawn_args = {"service", service_id, command};
+      string[] spawn_args = {"service", id, command};
       string[] spawn_env = Environ.get ();
       Pid child_pid;
 
@@ -49,6 +58,6 @@ public class ServicesManager.Services.Service : Object {
   }
 
   private string service_command(string command) {
-    return @"service $(service_id) $(command)";
+    return @"service $(id) $(command)";
   }
 }
