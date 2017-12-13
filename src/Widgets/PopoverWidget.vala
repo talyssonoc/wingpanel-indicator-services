@@ -16,7 +16,7 @@ public class Services.PopoverWidget : Gtk.Grid {
   }
 
   private ServiceWidget[] create_services(Service[] service_models) {
-    ServiceWidget[] services = new ServiceWidget[service_models.length];
+    var services = new ServiceWidget[service_models.length];
 
     for (int i = 0; i < service_models.length; i++) {
       services[i] = new ServiceWidget(service_models[i]);
