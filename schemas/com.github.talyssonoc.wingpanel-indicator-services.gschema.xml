@@ -6,7 +6,7 @@
     gettext-domain="com.github.talyssonoc.wingpanel-indicator-services"
   >
     <key type="aa{ss}" name="services">
-      <default>[{"id": "postgresql", "name": "PostgreSQL"}]</default>
+      <default>[{"id": "postgresql", "name": "PostgreSQL"}, {"id": "postgresql", "name": "PostgreSQL 2"}]</default>
       <summary>Sets the last bluetooth state to re-apply on reboot</summary>
       <description></description>
     </key>

@@ -12,7 +12,6 @@ public class Services.Indicator : Wingpanel.Indicator {
     this.visible = true;
   }
 
-  /* This method is called to get the widget that is displayed in the top bar */
   public override Gtk.Widget get_display_widget () {
     if (display_widget == null) {
       display_widget = new OverlayWidget ();
@@ -21,7 +20,6 @@ public class Services.Indicator : Wingpanel.Indicator {
     return display_widget;
   }
 
-  /* This method is called to get the widget that is displayed in the popover */
   public override Gtk.Widget? get_widget () {
     if (main_widget == null) {
       main_widget = new PopoverWidget ();
@@ -30,19 +28,14 @@ public class Services.Indicator : Wingpanel.Indicator {
     return main_widget;
   }
 
-  /* This method is called when the indicator popover opened */
   public override void opened () {
-    main_widget.update_services_state ();
+    main_widget.update ();
   }
 
-  /* This method is called when the indicator popover closed */
   public override void closed () { }
 }
 
-/*
- * This method is called once after your plugin has been loaded.
- * Create and return your indicator here if it should be displayed on the current server.
- */
+
 public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
   debug ("Activating Services Indicator");
 

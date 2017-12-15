@@ -1,6 +1,6 @@
 public class Services.ServiceWidget : Gtk.Grid {
-  private Service model;
   private Wingpanel.Widgets.Switch state_switch;
+  private Service model;
 
   public ServiceWidget(Service model) {
     this.model = model;
