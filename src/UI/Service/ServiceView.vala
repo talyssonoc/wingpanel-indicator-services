@@ -10,7 +10,7 @@ public class ServicesIndicator.UI.Service.ServiceView : Gtk.Grid {
   }
 
   public void update() {
-    update_switch(model.is_active());
+    update_switch(model.is_active);
   }
 
   private void update_switch(bool is_active) {
@@ -18,7 +18,7 @@ public class ServicesIndicator.UI.Service.ServiceView : Gtk.Grid {
   }
 
   private Wingpanel.Widgets.Switch create_switch() {
-    var state_switch = new Wingpanel.Widgets.Switch (model.name, model.is_active());
+    var state_switch = new Wingpanel.Widgets.Switch (model.name, model.is_active);
 
     model.change.connect(update_switch);
     state_switch.clicked.connect(model.toggle);

@@ -8,8 +8,10 @@ public class ServicesIndicator.Model.Service : Object {
     this.name = name;
   }
 
-  public bool is_active() {
-    return ServiceRepository.is_active(id);
+  public bool is_active {
+    get {
+      return ServiceRepository.is_active(id);
+    }
   }
 
   public void toggle() {
