@@ -15,14 +15,15 @@ ensure_vala_version ("0.26.0" MINIMUM)
 
 include (ValaPrecompile)
 vala_precompile (VALA_C ${EXEC_NAME}
-  Indicator.vala
-  Widgets/OverlayWidget.vala
-  Widgets/PopoverWidget.vala
-  Widgets/ServiceWidget.vala
+  Main.vala
+  Common/Settings.vala
   Model/Service.vala
   Model/ServiceRepository.vala
-  Services/Settings.vala
-  ${CMAKE_CURRENT_BINARY_DIR}/config.vala
+  UI/Indicator.vala
+  UI/Widgets/OverlayWidget.vala
+  UI/Widgets/PopoverWidget.vala
+  UI/Service/ServiceView.vala
+  ${CMAKE_CURRENT_BINARY_DIR}/Common/Constants.vala
 PACKAGES
   gtk+-3.0
   wingpanel-2.0

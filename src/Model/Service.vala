@@ -1,4 +1,4 @@
-public class Services.Service : Object {
+public class ServicesIndicator.Model.Service : Object {
   public signal void change(bool state);
   private string id;
   public string name;

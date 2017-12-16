@@ -11,11 +11,15 @@ set (DATADIR "${CMAKE_INSTALL_FULL_LIBDIR}/wingpanel/")
 set (PKGDATADIR "${DATADIR}")
 set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
 set (EXEC_NAME "${CMAKE_PROJECT_NAME}")
+set (SETTINGS_ID "${CMAKE_PROJECT_NAME}")
 set (RELEASE_NAME "A services management indicator.")
 set (VERSION "0.1")
 
 # Configure file
-configure_file (${CMAKE_SOURCE_DIR}/Constants.vala.cmake ${CMAKE_BINARY_DIR}/src/Constants.vala)
+configure_file (
+  ${CMAKE_SOURCE_DIR}/src/Common/Constants.vala.cmake
+  ${CMAKE_BINARY_DIR}/src/Common/Constants.vala
+)
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 # Comment this out to enable C compiler warnings

@@ -1,6 +1,6 @@
-namespace Services.ServiceRepository {
+namespace ServicesIndicator.Model.ServiceRepository {
   public Service[] load_all() {
-    var settings = Settings.get_instance();
+    var settings = Common.Settings.get_instance();
 
     var raw_services = settings.get_value("services");
     var services = new Service[raw_services.n_children()];

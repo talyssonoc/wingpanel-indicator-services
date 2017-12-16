@@ -1,8 +1,8 @@
-public class Services.ServiceWidget : Gtk.Grid {
+public class ServicesIndicator.UI.Service.ServiceView : Gtk.Grid {
   private Wingpanel.Widgets.Switch state_switch;
-  private Service model;
+  private Model.Service model;
 
-  public ServiceWidget(Service model) {
+  public ServiceView(Model.Service model) {
     this.model = model;
     state_switch = create_switch();
 
