@@ -2,9 +2,7 @@ namespace ServicesIndicator.Model.ServiceRepository {
   public delegate void ToggleCallback(bool is_active);
 
   public Service[] load_all() {
-    var settings = Common.Settings.get_instance();
-
-    var raw_services = settings.get_value("services");
+    var raw_services = settings().get_value("services");
     var services = new Service[raw_services.n_children()];
 
     for (int i = 0; i < raw_services.n_children(); i++) {
@@ -16,6 +14,12 @@ namespace ServicesIndicator.Model.ServiceRepository {
     }
 
     return services;
+  }
+
+  public bool save_all(Service[] services) {
+    var settings_services = GLib.Variant.parse(null, serialize_services_list(services));
+
+    return settings().set_value("services", settings_services);
   }
 
   public bool is_active(string service_id) {
@@ -63,5 +67,26 @@ namespace ServicesIndicator.Model.ServiceRepository {
     } catch (SpawnError e) {
       stderr.printf("%s\n", e.message);
     }
+  }
+
+  private GLib.Settings settings() {
+    return Common.Settings.get_instance();
+  }
+
+  private string serialize_services_list(Service[] services) {
+    string[] serialized_services = new string[services.length];
+
+    for (int i = 0; i < services.length; i++) {
+      serialized_services[i] = serialize_service(services[i]);
+    }
+
+    return @"[$(string.joinv(", ", serialized_services))]";
+  }
+
+  private string serialize_service(Service service) {
+    var id = service.id;
+    var name = service.name;
+
+    return @"{\"id\": \"$(id)\", \"name\": \"$(name)\"}";
   }
 }

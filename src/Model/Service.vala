@@ -1,11 +1,15 @@
 public class ServicesIndicator.Model.Service : Object {
   public signal void change(bool state);
-  private string id;
+  public string id;
   public string name;
 
   public Service(string id, string name) {
     this.id = id;
     this.name = name;
+  }
+
+  public Service.blank() {
+    this("", "");
   }
 
   public bool is_active {

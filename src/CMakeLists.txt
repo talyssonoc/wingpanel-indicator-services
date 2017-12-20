@@ -24,6 +24,9 @@ vala_precompile (VALA_C ${EXEC_NAME}
   UI/Widgets/PopoverWidget.vala
   UI/Service/ServiceView.vala
   UI/Service/ServiceListView.vala
+  UI/Preferences/PreferencesView.vala
+  UI/Preferences/ServiceView.vala
+  UI/Preferences/ServiceListView.vala
   ${CMAKE_CURRENT_BINARY_DIR}/Common/Constants.vala
 PACKAGES
   gtk+-3.0
