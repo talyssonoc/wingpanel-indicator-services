@@ -18,6 +18,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
   Main.vala
   Common/Settings.vala
   Model/Service.vala
+  Model/ServiceValidation.vala
   Infra/ServiceRepository.vala
   Infra/ServiceMapper.vala
   UI/Indicator.vala

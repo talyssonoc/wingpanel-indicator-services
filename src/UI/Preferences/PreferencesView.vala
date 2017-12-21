@@ -38,8 +38,14 @@ public class ServicesIndicator.UI.Preferences.PreferencesView : Gtk.Dialog {
         Gtk.DialogFlags.MODAL,
         Gtk.MessageType.ERROR,
         Gtk.ButtonsType.OK,
-        "Error while saving preferences."
+        "Error while saving or invalid service info."
       );
+
+      msg.response.connect ((response_id) => {
+        if(response_id == Gtk.ResponseType.OK) {
+          msg.destroy();
+        }
+      });
 
       msg.show();
     }

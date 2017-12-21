@@ -28,6 +28,12 @@ namespace ServicesIndicator.Infra.ServiceRepository {
   }
 
   public bool save_all(Model.Service[] services) {
+    foreach (var service in services) {
+      if(!Model.ServiceValidation.call(service)) {
+        return false;
+      }
+    }
+
     try {
       var settings_services = ServiceMapper.from_model_collection(services);
 

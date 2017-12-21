@@ -1,4 +1,5 @@
 public class ServicesIndicator.Model.Service : Object {
+
   public signal void state_changed(bool state);
   public string id;
   public string name;
