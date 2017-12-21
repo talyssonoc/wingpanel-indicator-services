@@ -16,9 +16,9 @@ ensure_vala_version ("0.26.0" MINIMUM)
 include (ValaPrecompile)
 vala_precompile (VALA_C ${EXEC_NAME}
   Main.vala
-  Common/Settings.vala
   Model/Service.vala
   Model/ServiceValidation.vala
+  Infra/Settings.vala
   Infra/ServiceRepository.vala
   Infra/ServiceMapper.vala
   UI/Indicator.vala

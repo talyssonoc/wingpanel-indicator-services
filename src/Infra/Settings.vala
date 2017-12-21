@@ -1,4 +1,4 @@
-namespace ServicesIndicator.Common.Settings {
+namespace ServicesIndicator.Infra.Settings {
   private GLib.Settings? settings;
 
   private GLib.Settings get_settings() {

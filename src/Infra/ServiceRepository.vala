@@ -22,7 +22,7 @@ namespace ServicesIndicator.Infra.ServiceRepository {
   }
 
   public Model.Service[] load_all() {
-    var raw_services = Common.Settings.get_value("services");
+    var raw_services = Settings.get_value("services");
 
     return ServiceMapper.from_variant_collection(raw_services);
   }
@@ -37,7 +37,7 @@ namespace ServicesIndicator.Infra.ServiceRepository {
     try {
       var settings_services = ServiceMapper.from_model_collection(services);
 
-      var successful = Common.Settings.set_value("services", settings_services);
+      var successful = Settings.set_value("services", settings_services);
 
       if(successful) {
         get_signals().changed(load_all());
