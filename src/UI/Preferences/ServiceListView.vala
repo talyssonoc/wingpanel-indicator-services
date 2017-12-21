@@ -6,7 +6,7 @@ class ServicesIndicator.UI.Preferences.ServiceListView : Gtk.Box {
     set_spacing(2);
 
     services = new Gee.ArrayList<Model.Service>.wrap(
-      Model.ServiceRepository.load_all()
+      Model.ServiceRepository.get_instance().load_all()
     );
 
     render_children();

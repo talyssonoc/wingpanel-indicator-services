@@ -29,7 +29,7 @@ public class ServicesIndicator.UI.Indicator : Wingpanel.Indicator {
   }
 
   public override void opened () {
-    main_widget.update ();
+    main_widget.refresh ();
   }
 
   public override void closed () { }

@@ -1,5 +1,5 @@
 public class ServicesIndicator.Model.Service : Object {
-  public signal void change(bool state);
+  public signal void state_changed(bool state);
   public string id;
   public string name;
 
@@ -14,13 +14,13 @@ public class ServicesIndicator.Model.Service : Object {
 
   public bool is_active {
     get {
-      return ServiceRepository.is_active(id);
+      return ServiceRepository.get_instance().is_active(id);
     }
   }
 
   public void toggle() {
-    ServiceRepository.toggle(id, (is_active) => {
-      change(is_active);
+    ServiceRepository.get_instance().toggle(id, (is_active) => {
+      state_changed(is_active);
     });
   }
 }

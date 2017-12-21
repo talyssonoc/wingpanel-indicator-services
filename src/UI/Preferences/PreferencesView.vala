@@ -28,7 +28,7 @@ public class ServicesIndicator.UI.Preferences.PreferencesView : Gtk.Dialog {
   }
 
   private void handle_click_save() {
-    var success = Model.ServiceRepository.save_all(service_list.services.to_array());
+    var success = Model.ServiceRepository.get_instance().save_all(service_list.services.to_array());
 
     if(success) {
       close();

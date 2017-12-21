@@ -1,5 +1,16 @@
-namespace ServicesIndicator.Model.ServiceRepository {
+class ServicesIndicator.Model.ServiceRepository {
   public delegate void ToggleCallback(bool is_active);
+  public signal void changed(Service[] service_models);
+
+  private static ServiceRepository instance;
+
+  public static ServiceRepository get_instance() {
+    if(instance == null) {
+      instance = new ServiceRepository();
+    }
+
+    return instance;
+  }
 
   public Service[] load_all() {
     var raw_services = settings().get_value("services");
@@ -19,7 +30,13 @@ namespace ServicesIndicator.Model.ServiceRepository {
   public bool save_all(Service[] services) {
     var settings_services = GLib.Variant.parse(null, serialize_services_list(services));
 
-    return settings().set_value("services", settings_services);
+    var successful = settings().set_value("services", settings_services);
+
+    if(successful) {
+      changed(load_all());
+    }
+
+    return successful;
   }
 
   public bool is_active(string service_id) {

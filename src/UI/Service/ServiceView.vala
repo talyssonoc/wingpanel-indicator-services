@@ -9,7 +9,7 @@ public class ServicesIndicator.UI.Service.ServiceView : Gtk.Grid {
     attach(state_switch, 0, 0, 1, 1);
   }
 
-  public void update() {
+  public void refresh() {
     update_switch(model.is_active);
   }
 
@@ -20,7 +20,7 @@ public class ServicesIndicator.UI.Service.ServiceView : Gtk.Grid {
   private Wingpanel.Widgets.Switch create_switch() {
     var state_switch = new Wingpanel.Widgets.Switch (model.name, model.is_active);
 
-    model.change.connect(update_switch);
+    model.state_changed.connect(update_switch);
     state_switch.clicked.connect(model.toggle);
 
     return state_switch;
