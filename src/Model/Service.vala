@@ -14,12 +14,12 @@ public class ServicesIndicator.Model.Service : Object {
 
   public bool is_active {
     get {
-      return ServiceRepository.get_instance().is_active(id);
+      return Infra.ServiceRepository.is_active(id);
     }
   }
 
   public void toggle() {
-    ServiceRepository.get_instance().toggle(id, (is_active) => {
+    Infra.ServiceRepository.toggle(id, (is_active) => {
       state_changed(is_active);
     });
   }

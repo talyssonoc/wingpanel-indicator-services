@@ -21,7 +21,7 @@ public class ServicesIndicator.UI.Widgets.PopoverWidget : Gtk.ListBox {
 
   private void add_listeners() {
     show_preferences_button.clicked.connect(show_preferences);
-    Model.ServiceRepository.get_instance().changed.connect(handle_services_change);
+    Infra.ServiceRepository.connect(handle_services_change);
   }
 
   private void handle_services_change() {

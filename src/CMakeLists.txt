@@ -18,7 +18,8 @@ vala_precompile (VALA_C ${EXEC_NAME}
   Main.vala
   Common/Settings.vala
   Model/Service.vala
-  Model/ServiceRepository.vala
+  Infra/ServiceRepository.vala
+  Infra/ServiceMapper.vala
   UI/Indicator.vala
   UI/Widgets/OverlayWidget.vala
   UI/Widgets/PopoverWidget.vala

@@ -2,7 +2,7 @@ public class ServicesIndicator.UI.Service.ServiceListView : Gtk.ListBox {
   private UI.Service.ServiceView[] service_views;
 
   public ServiceListView() {
-    service_views = create_service_views(Model.ServiceRepository.get_instance().load_all());
+    service_views = create_service_views(Infra.ServiceRepository.load_all());
 
     render_children();
   }
