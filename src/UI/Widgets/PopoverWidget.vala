@@ -3,7 +3,8 @@ public class ServicesIndicator.UI.Widgets.PopoverWidget : Gtk.ListBox {
   private Wingpanel.Widgets.Button show_preferences_button;
 
   public PopoverWidget() {
-    service_list_view = new UI.Service.ServiceListView();
+    var services = Infra.ServiceRepository.load_all();
+    service_list_view = new UI.Service.ServiceListView(services);
     show_preferences_button = new Wingpanel.Widgets.Button("Preferences");
 
     render_children();
@@ -24,9 +25,9 @@ public class ServicesIndicator.UI.Widgets.PopoverWidget : Gtk.ListBox {
     Infra.ServiceRepository.connect(handle_services_change);
   }
 
-  private void handle_services_change() {
+  private void handle_services_change(Model.Service[] services) {
     service_list_view.get_parent().destroy();
-    service_list_view = new UI.Service.ServiceListView();
+    service_list_view = new UI.Service.ServiceListView(services);
     prepend(service_list_view);
     service_list_view.show_all();
   }
