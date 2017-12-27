@@ -4,20 +4,18 @@ namespace ServicesIndicator.Infra.ServiceRepository {
   private Signals signals;
 
   private class Signals {
-    public signal void changed(Model.Service[] service_models);
-  }
+    public signal void changed();
 
-  private Signals get_signals() {
-    if(signals == null) {
-      signals = new Signals();
+    public Signals() {
+      Settings.connect(() => {
+        changed();
+      });
     }
-
-    return signals;
   }
 
-  public void connect(ConnectCallback callback) {
-    get_signals().changed.connect((services) => {
-      callback(services);
+  public void connect(ServiceRepository.ConnectCallback callback) {
+    get_signals().changed.connect(() => {
+      callback(load_all());
     });
   }
 
@@ -38,10 +36,6 @@ namespace ServicesIndicator.Infra.ServiceRepository {
       var settings_services = ServiceMapper.from_model_collection(services);
 
       var successful = Settings.set_value("services", settings_services);
-
-      if(successful) {
-        get_signals().changed(load_all());
-      }
 
       return successful;
     } catch(GLib.VariantParseError e) {
@@ -96,5 +90,13 @@ namespace ServicesIndicator.Infra.ServiceRepository {
     } catch (SpawnError e) {
       stderr.printf("%s\n", e.message);
     }
+  }
+
+  private Signals get_signals() {
+    if(signals == null) {
+      signals = new Signals();
+    }
+
+    return signals;
   }
 }
